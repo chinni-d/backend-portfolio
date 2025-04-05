@@ -10,7 +10,13 @@ const port = process.env.PORT || 3001;
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.use(cors());
+// ✅ CORS configuration — update with your frontend URL in production
+app.use(
+  cors({
+    origin: "https://dmanikanta.site", // ← REPLACE THIS with your deployed frontend URL
+  })
+);
+
 app.use(express.json());
 
 app.post("/api/send-email", async (req: Request, res: Response) => {
@@ -18,7 +24,7 @@ app.post("/api/send-email", async (req: Request, res: Response) => {
     const { name, email, message } = req.body;
 
     await resend.emails.send({
-      from: "Contact Form <contact@dmanikanta.site>", // Make sure this domain is verified in Resend
+      from: "Contact Form <contact@dmanikanta.site>",
       to: "darapureddymanikanta8@gmail.com",
       subject: `New Contact Form Message from ${name}`,
       html: `
