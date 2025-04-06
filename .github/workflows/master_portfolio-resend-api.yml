@@ -60,9 +60,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_577C79806E7D42A1865804F3B5183785 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D40E7D6F384B4035BF50463EC49F2B6D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0A33CA62D77648B184DCC879171E5790 }}
+          client-id: ${{ secrets.__clientidsecretname__ }}
+          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -71,4 +71,3 @@ jobs:
           app-name: 'portfolio-resend-api'
           slot-name: 'Production'
           package: .
-          
